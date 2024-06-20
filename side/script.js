@@ -16,6 +16,7 @@ p.then((res) => {
   let country = data.location.country;
   let temp = data.current.temp_c;
   let feel = data.current.feelslike_c;
+  let humidity = data.current.humidity;
   let conditionText = data.current.condition.text;
   let conditionIcon = data.current.condition.icon.replace(/64/gi, "128");
 
@@ -23,32 +24,35 @@ p.then((res) => {
   let today = data.forecast.forecastday[0].hour;
   let tommorow = data.forecast.forecastday[1].hour;
   let arr = today.concat(tommorow);
-  let currentEpoch = Date.now() / 1000;
+  let currentEpoch = Date.now();
 
   //for index
   let i = 0;
   //for arr
-  let hourForecast = [];
+  let hourForecasts = [];
 
   //filtering after current epoch, removing one after before and getting only 6
   arr.forEach((hour) => {
     if (
       i % 2 === 1 &&
-      hourForecast.length < 6 &&
-      hour.time_epoch > currentEpoch
+      hourForecasts.length < 6 &&
+      hour.time_epoch * 1000 > currentEpoch
     ) {
-      hourForecast.push(hour);
+      hourForecasts.push(hour);
     }
 
     i++;
   });
 
   //looping through today forecast
-  /* hourForecast.forEach((hour) => {
-    
-  }); */
+  hourForecasts.forEach((hourForecast) => {
+    let epoch = hourForecast.time_epoch * 1000;
 
-  console.log(hourForecast);
+    let hour = new Date(epoch).getHours();
+    let period = hour < 12 ? "a.m." : "p.m.";
+
+    console.log(hour + " " + period);
+  });
 
   /* console.log(city);
     console.log(region);
