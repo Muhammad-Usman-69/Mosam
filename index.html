@@ -7,22 +7,24 @@
     <meta name="author" content="Muhammad Usman" />
     <link rel="stylesheet" href="side/style.css" />
   </head>
-  <body class="bg-[#e4eaf2] text-sm font-mono">
+  <body class="bg-[#e4eaf2] text-gray-800 text-sm">
     <header class="grid grid-cols-3 bg-white p-4">
       <div class="flex items-center space-x-3">
         <img src="images/weather02-512.png" class="w-12 h-12" />
         <p class="text-lg">Mosam</p>
       </div>
       <div class="grid place-items-center">
-        <form
-          class="border-2 border-[#e4eaf2] flex flex-row"
-        >
+        <form class="border-2 border-[#e4eaf2] flex flex-row">
           <input
             type="search"
             class="p-4 outline-none placeholder:italic"
             placeholder="Real Madrid"
           />
-          <input type="submit" value="Search" class="border-[#e4eaf2] border-l-2 px-4 bg-[#1ab5ed] text-white" />
+          <input
+            type="submit"
+            value="Search"
+            class="border-[#e4eaf2] border-l-2 px-4 bg-[#1ab5ed] text-white"
+          />
         </form>
       </div>
       <div class="flex items-center space-x-8 justify-end">
@@ -35,5 +37,74 @@
         </div>
       </div>
     </header>
+    <!-- basic -->
+    <div class="p-8 grid place-items-center w-full">
+      <div class="flex justify-between w-[800px] bg-white rounded-md p-8">
+        <div class="flex flex-col space-y-3">
+          <img
+            src="https://cdn.weatherapi.com/weather/128x128/day/143.png"
+            alt=""
+            style="background-color: transparent"
+          />
+        </div>
+        <div class="flex flex-col space-y-12">
+          <div class="space-y-3">
+            <p class="text-[32px] flex items-center justify-end">
+              <img
+                src="images/location.jpg"
+                style="width: 32px; height: 32px"
+              />
+              <span>Multan</span>
+            </p>
+            <p class="text-gray-400 text-end">Punjab - Pakistan</p>
+          </div>
+          <div class="space-y-4">
+            <p class="text-[32px] flex items-center justify-end">
+              <img
+                src="images/images.png"
+                style="width: 32px; height: 32px"
+              />
+              <span>37 &#8451;</span>
+            </p>
+            <p class="text-end text-gray-400">Feels Like 38 &#8451;</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- daily forecast -->
+    <div class="p-8 grid place-items-center w-full">
+      <div class="flex justify-between w-[800px] bg-white rounded-md p-8">
+        <div class="flex flex-col space-y-3">
+          <img
+            src="https://cdn.weatherapi.com/weather/128x128/day/143.png"
+            alt=""
+            style="background-color: transparent"
+          />
+        </div>
+        <div class="flex flex-col space-y-12">
+          <div class="space-y-3">
+            <p class="text-[32px] flex items-center justify-end">
+              <img
+                src="images/location.jpg"
+                style="width: 32px; height: 32px"
+              />
+              <span>Multan</span>
+            </p>
+            <p class="text-gray-400 text-end">Punjab - Pakistan</p>
+          </div>
+          <div class="space-y-4">
+            <p class="text-[32px] flex items-center justify-end">
+              <img
+                src="images/images.png"
+                style="width: 32px; height: 32px"
+              />
+              <span>37 &#8451;</span>
+            </p>
+            <p class="text-end text-gray-400">Feels Like 38 &#8451;</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="side/script.js"></script>
   </body>
 </html>
