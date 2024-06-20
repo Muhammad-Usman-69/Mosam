@@ -1,0 +1,3 @@
+62cc8af97d144a42ad573800242006
+https://api.weatherapi.com/v1/current.json?key=62cc8af97d144a42ad573800242006&q=Multan
+https://api.weatherapi.com/v1/forecast.json?key=62cc8af97d144a42ad573800242006&q=Multan&days=2
