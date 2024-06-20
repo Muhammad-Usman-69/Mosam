@@ -44,14 +44,25 @@ p.then((res) => {
     i++;
   });
 
+  document.getElementById("hourly").innerHTML  = "";
+
   //looping through today forecast
   hourForecasts.forEach((hourForecast) => {
     let epoch = hourForecast.time_epoch * 1000;
 
+    //hour and period
     let hour = new Date(epoch).getHours();
     let period = hour < 12 ? "a.m." : "p.m.";
+    let condition = hourForecast.condition.text;
+    let image = hourForecast.condition.icon.replace(/64/gi, "128");
 
-    console.log(hour + " " + period);
+    document.getElementById("hourly").innerHTML += 
+    `<div class="flex flex-col border-r-2 border-[#e4eaf2] last:border-none px-2" >
+        <img src="https://${image}" style="background-color: transparent"
+            />
+        <p class="text-center">${hour + ` ` + period}</p>
+        <p class="text-center">${condition}</p>
+    </div>`;
   });
 
   /* console.log(city);
