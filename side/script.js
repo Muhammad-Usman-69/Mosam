@@ -19,15 +19,36 @@ p.then((res) => {
   let conditionText = data.current.condition.text;
   let conditionIcon = data.current.condition.icon.replace(/64/gi, "128");
 
-  //hourly forecast data
+  //hourly forecast data of today and tommowrow
   let today = data.forecast.forecastday[0].hour;
   let tommorow = data.forecast.forecastday[1].hour;
-  let hourForecast = today.concat(tommorow);
+  let arr = today.concat(tommorow);
+  let currentEpoch = Date.now() / 1000;
+
+  //for index
+  let i = 0;
+  //for arr
+  let hourForecast = [];
+
+  //filtering after current epoch, removing one after before and getting only 6
+  arr.forEach((hour) => {
+    if (
+      i % 2 === 1 &&
+      hourForecast.length < 6 &&
+      hour.time_epoch > currentEpoch
+    ) {
+      hourForecast.push(hour);
+    }
+
+    i++;
+  });
 
   //looping through today forecast
   /* hourForecast.forEach((hour) => {
-    console.log(hour);
+    
   }); */
+
+  console.log(hourForecast);
 
   /* console.log(city);
     console.log(region);
