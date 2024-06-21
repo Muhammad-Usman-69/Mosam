@@ -41,14 +41,18 @@
     <div class="relative z-0 w-full mb-5 group">
       <input type="text" name="city" id="city"
         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-        placeholder=" " required minlength="5" />
+        placeholder=" " required minlength="2" oninput="checkCity(this.value)" />
       <label for="city"
-        class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Your City</label>
+        class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Your
+        City</label>
     </div>
+    <p class="text-sm hidden text-red-600 border-red-800 border-b-2" id="indicator">City Not Available</p>
+    <div class="text-sm hidden text-green-600 border-green-700 border-b-2" id="auto-indicator">You mean <span
+        id="auto-city"></span>? <button class="font-bold" onclick="confirmCity()">Yes</button></div>
     <div class="relative z-0 w-full mb-5 group">
       <input type="email" name="email" id="email"
         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-        placeholder=" " required minlength="10" />
+        placeholder=" " required minlength="10" autocomplete="username" />
       <label for="email"
         class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email
         address</label>
@@ -63,7 +67,8 @@
     <p id="helper-text-explanation" class="mb-5 text-sm text-gray-500 dark:text-gray-400">Already a user? <a
         href="login" class="font-medium text-blue-600 hover:underline">Log in</a>.</p>
     <button type="submit"
-      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+      id="submit" disabled>
       Sign up
     </button>
   </form>
@@ -77,6 +82,54 @@
       setTimeout(() => {
         element.parentNode.remove();
       }, 200);
+    }
+
+    //initializing for name
+    let city;
+
+    //check if city exist
+    async function checkCity() {
+
+      //disabling submit button and showign wrong alerts
+      document.getElementById("submit").disabled = true;
+      document.getElementById("indicator").classList.remove("hidden");
+      document.getElementById("auto-indicator").classList.add("hidden");
+
+      //fetching data from api
+      let key = "62cc8af97d144a42ad573800242006";
+      let city = document.getElementById("city").value;
+      let p = fetch(
+        `https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${city}`
+      );
+      p.then(res => {
+        return res.json();
+      }).then(data => {
+
+        if (data.location != undefined) {
+          city = data.location.name;
+
+          //showing auto correct and hiding wrong indication
+          document.getElementById("indicator").classList.add("hidden");
+          document.getElementById("auto-city").innerHTML = city;
+          document.getElementById("auto-indicator").classList.remove("hidden");
+
+
+          //enabling submit button
+          document.getElementById("submit").disabled = false;
+        }
+
+        //if input is clear 
+        if (city == "") {
+          document.getElementById("indicator").classList.add("hidden");
+          document.getElementById("auto-indicator").classList.add("hidden");
+          document.getElementById("submit").disabled = true;
+        }
+      })
+    }
+
+    function confirmCity() {
+      document.getElementById("city").value = document.getElementById("auto-city").innerHTML;
+      document.getElementById("auto-indicator").classList.add("hidden");
     }
   </script>
 </body>
