@@ -80,6 +80,10 @@ if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
             <p class="">Wind:</p>
             <p class="font-bold" id="wind"></p>
           </li>
+          <li class="flex justify-between space-x-3">
+            <p class="">Last Update:</p>
+            <p class="font-bold" id="last-update"></p>
+          </li>
         </ul>
       </div>
       <div class="flex flex-col space-y-12">

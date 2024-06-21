@@ -10,7 +10,6 @@ let p = fetch(
 p.then((res) => {
   return res.json();
 }).then((data) => {
-
   //today weather
   let city = data.location.name;
   let region = data.location.region;
@@ -24,9 +23,18 @@ p.then((res) => {
   let minimumTemp = data.forecast.forecastday[0].day.mintemp_c;
   let wind = data.current.wind_kph;
 
+  //last update time
+  let lastEpoch = data.current.last_updated_epoch * 1000;
+  let lastDate = new Date(lastEpoch);
+  let lastMinute = lastDate.getMinutes();
+  let lastHour = lastDate.getHours();
+  let lastPeriod = lastHour < 12 ? "a.m" : "p.m";
+  lastHour = lastHour < 12 ? lastHour : lastHour - 12;
+
   //assinging it
   document.getElementById("city").innerHTML = city;
-  document.getElementById("region-country").innerHTML = region + " - " + country;
+  document.getElementById("region-country").innerHTML =
+    region + " - " + country;
   document.getElementById("current-temp").innerHTML = temp + " &#8451;";
   document.getElementById("current-feel").innerHTML = feel + " &#8451;";
   document.getElementById("humidity").innerHTML = humidity;
@@ -35,6 +43,7 @@ p.then((res) => {
   document.getElementById("maximum-temp").innerHTML = maximumTemp + " &#8451;";
   document.getElementById("minimum-temp").innerHTML = minimumTemp + " &#8451;";
   document.getElementById("wind").innerHTML = wind + " km/h";
+  document.getElementById("last-update").innerHTML = lastHour + ":" + lastMinute + " " + lastPeriod;
 
   //hourly forecast data of today and tommowrow
   let today = data.forecast.forecastday[0].hour;
