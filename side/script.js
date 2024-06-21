@@ -30,6 +30,8 @@ p.then((res) => {
   let lastHour = lastDate.getHours();
   let lastPeriod = lastHour < 12 ? "a.m" : "p.m";
   lastHour = lastHour < 12 ? lastHour : lastHour - 12;
+  //handling if minute is only 0
+  lastMinute = lastMinute.toString().length < 2 ? "0" + lastMinute : lastMinute;
 
   //assinging it
   document.getElementById("city-name").innerHTML = city;
@@ -84,7 +86,7 @@ p.then((res) => {
 
     document.getElementById(
       "hourly"
-    ).innerHTML += `<div class="flex flex-col border-r-2 border-[#e4eaf2] last:border-none " >
+    ).innerHTML += `<div class="flex flex-col md:border-r-2 border-[#e4eaf2] last:border-none " >
         <img src="https://${image}" style="background-color: transparent"
             />
         <p class="text-center">${hour + ` ` + period}</p>
@@ -110,8 +112,6 @@ p.then((res) => {
       day = "Today";
     }
 
-    console.log(weekForcast);
-
     let condition = weekForcast.day.condition.text;
     let image = weekForcast.day.condition.icon.replace(/64/gi, "128");
     let maxTemp = weekForcast.day.maxtemp_c;
@@ -119,7 +119,7 @@ p.then((res) => {
 
     document.getElementById(
       "daily"
-    ).innerHTML += `<div class="flex flex-col border-r-2 border-[#e4eaf2] last:border-none">
+    ).innerHTML += `<div class="flex flex-col md:border-r-2 border-[#e4eaf2] last:border-none">
           <img src="https:${image}" style="background-color: transparent" />
           <p class="text-center">${day}</p>
           <p class="text-center">${condition}</p>
@@ -144,7 +144,7 @@ async function checkCity() {
   p.then((res) => {
     return res.json();
   }).then((data) => {
-    
+
     if (data.location != undefined) {
       //enabling submit button and showing green color
       document.getElementById("update").style.backgroundColor =

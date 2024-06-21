@@ -28,19 +28,20 @@ if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
 </head>
 
 <body class="bg-[#e4eaf2] text-gray-800 text-sm">
-  <header class="grid grid-cols-3 bg-white p-4">
+  <header class="grid grid-cols-2 bg-white p-4 md:grid-cols-3 gap-4">
     <a href="/" class="flex items-center space-x-3">
       <img src="images/logo.png" class="w-12 h-12" />
       <p class="text-lg">Mosam</p>
     </a>
-    <div class="grid place-items-center">
+    <div class="place-items-center grid row-start-2 row-end-2 col-span-2 md:col-span-1 md:col-start-2 md:row-start-1">
       <form action="partials/_changecity" class="border-2 border-[#e4eaf2] flex flex-row" method="POST">
-        <input type="text" name="city" id="city" class="p-4 outline-none placeholder:italic" placeholder="Real Madrid" oninput="checkCity()" minlength="2" />
-        <button type="submit" class="px-4 bg-[#1ab5ed] text-white" id="update" disabled >Update</button>
+        <input type="text" name="city" id="city" class="p-4 outline-none placeholder:italic" placeholder="Real Madrid"
+          oninput="checkCity()" minlength="2" />
+        <button type="submit" class="px-4 bg-[#1ab5ed] text-white" id="update" disabled>Update</button>
       </form>
     </div>
     <div class="flex items-center space-x-8 justify-end">
-      <div class="flex items-center space-x-2">
+      <div class="items-center space-x-2 flex">
         <img src="images/city.png" alt="" class="w-7 h-7" />
         <p class="capitalize"><?php echo $city; ?></p>
       </div>
@@ -56,16 +57,27 @@ if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
     </div>
   </header>
   <!-- all container -->
-  <div class="space-y-8 p-8 grid place-items-center w-full">
+  <div class="space-y-4 p-4 md:p-8 md:space-y-8 grid place-items-center w-full">
+    <!-- mobile form -->
+    <!-- <div class="place-items-center grid bg-white w-full rounded-md">
+      <form action="partials/_changecity" class="flex flex-row" method="POST">
+        <input type="text" name="city" id="city" class="p-4 outline-none placeholder:italic" placeholder="Real Madrid"
+          oninput="checkCity()" minlength="2" />
+        <button type="submit" class="px-4 bg-[#1ab5ed] text-white" id="update" disabled>Update</button>
+      </form>
+    </div> -->
+
     <!-- basic -->
-    <div class="flex justify-between w-[800px] bg-white rounded-md p-8">
-      <div class="flex flex-col space-y-12 w-48">
-        <img src="" alt="" style="background-color: transparent"
-          id="current-icon" />
+    <div
+      class="flex flex-col space-y-12 sm:justify-between sm:flex-row w-full lg:w-[800px] bg-white rounded-md p-8 sm:space-y-0">
+      <div class="flex flex-col space-y-12 m:w-48">
+        <div class="flex  justify-center w-full">
+          <img src="" alt="" style="background-color: transparent" id="current-icon" width="200" height="200" />
+        </div>
         <ul class="text-gray-600 text-base">
           <li class="flex justify-between space-x-3">
             <p class="">Condition:</p>
-            <p class="font-bold text-end" id="condition"></p>
+            <p class="font-bold text-end max-w-36" id="condition"></p>
           </li>
           <li class="flex justify-between space-x-3">
             <p class="">Maximun:</p>
@@ -110,14 +122,14 @@ if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
       </div>
     </div>
 
-    <div class="w-[800px] bg-white rounded-md pb-8">
+    <div class="w-full lg:w-[800px] bg-white rounded-md pb-4 md:pb-8">
       <p class="text-[24px] p-8 text-gray-800">Hourly Forecast</p>
-      <div class="grid grid-cols-6 text-gray-400 text-base gap-2 px-2" id="hourly"></div>
+      <div class="grid grid-cols-3 md:grid-cols-6 text-gray-400 text-base gap-2 px-2" id="hourly"></div>
     </div>
 
-    <div class="w-[800px] bg-white rounded-md pb-8">
+    <div class="w-full lg:w-[800px] bg-white rounded-md pb-4 md:pb-8">
       <p class="text-[24px] p-8 text-gray-800">Daily Forecast</p>
-      <div class="grid grid-cols-6 text-gray-400 text-base gap-2 px-2" id="daily"></div>
+      <div class="grid grid-cols-3 md:grid-cols-6 text-gray-400 text-base gap-2 px-2" id="daily"></div>
     </div>
   </div>
 
