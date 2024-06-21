@@ -34,15 +34,15 @@ if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
       <p class="text-lg">Mosam</p>
     </a>
     <div class="grid place-items-center">
-      <form class="border-2 border-[#e4eaf2] flex flex-row">
-        <input type="text" id="city" class="p-4 outline-none placeholder:italic" placeholder="Real Madrid" />
-        <button type="submit" class="px-4 bg-[#1ab5ed] text-white" disabled oninput="checkCity()">Update</button>
+      <form action="partials/_changecity" class="border-2 border-[#e4eaf2] flex flex-row" method="POST">
+        <input type="text" name="city" id="city" class="p-4 outline-none placeholder:italic" placeholder="Real Madrid" oninput="checkCity()" minlength="2" />
+        <button type="submit" class="px-4 bg-[#1ab5ed] text-white" id="update" disabled >Update</button>
       </form>
     </div>
     <div class="flex items-center space-x-8 justify-end">
       <div class="flex items-center space-x-2">
         <img src="images/city.png" alt="" class="w-7 h-7" />
-        <p><?php echo $city; ?></p>
+        <p class="capitalize"><?php echo $city; ?></p>
       </div>
       <div>
         <?php

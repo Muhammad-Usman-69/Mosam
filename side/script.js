@@ -131,10 +131,9 @@ p.then((res) => {
 
 //check if city exist
 async function checkCity() {
-  //disabling submit button and showign wrong alerts
-  document.getElementById("submit").disabled = true;
-  document.getElementById("indicator").classList.remove("hidden");
-  document.getElementById("auto-indicator").classList.add("hidden");
+  //disabling update button and showing red color
+  document.getElementById("update").disabled = true;
+  document.getElementById("update").style.backgroundColor = "rgb(220 38 38)";
 
   //fetching data from api
   let key = "62cc8af97d144a42ad573800242006";
@@ -145,23 +144,19 @@ async function checkCity() {
   p.then((res) => {
     return res.json();
   }).then((data) => {
+    
     if (data.location != undefined) {
-      city = data.location.name;
-
-      //showing auto correct and hiding wrong indication
-      document.getElementById("indicator").classList.add("hidden");
-      document.getElementById("auto-city").innerHTML = city;
-      document.getElementById("auto-indicator").classList.remove("hidden");
-
-      //enabling submit button
-      document.getElementById("submit").disabled = false;
+      //enabling submit button and showing green color
+      document.getElementById("update").style.backgroundColor =
+        "rgb(22 163 74)";
+      document.getElementById("update").disabled = false;
     }
 
     //if input is clear
     if (city == "") {
-      document.getElementById("indicator").classList.add("hidden");
-      document.getElementById("auto-indicator").classList.add("hidden");
-      document.getElementById("submit").disabled = true;
+      document.getElementById("update").style.backgroundColor =
+        "#1ab5ed";
+      document.getElementById("update").disabled = true;
     }
   });
 }

@@ -730,10 +730,6 @@ video {
           appearance: none;
 }
 
-.grid-flow-row {
-  grid-auto-flow: row;
-}
-
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -848,10 +844,6 @@ video {
   border-bottom-width: 2px;
 }
 
-.border-l-2 {
-  border-left-width: 2px;
-}
-
 .border-\[\#e4eaf2\] {
   --tw-border-opacity: 1;
   border-color: rgb(228 234 242 / var(--tw-border-opacity));
@@ -887,9 +879,47 @@ video {
   border-color: rgb(153 27 27 / var(--tw-border-opacity));
 }
 
+.border-red-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(220 38 38 / var(--tw-border-opacity));
+}
+
+.border-red-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(239 68 68 / var(--tw-border-opacity));
+}
+
+.border-green-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(34 197 94 / var(--tw-border-opacity));
+}
+
+.border-green-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(22 163 74 / var(--tw-border-opacity));
+}
+
 .border-green-800 {
   --tw-border-opacity: 1;
   border-color: rgb(22 101 52 / var(--tw-border-opacity));
+}
+
+.border-\[ffc106\] {
+  border-color: ffc106;
+}
+
+.border-\[\#ffc106\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 193 6 / var(--tw-border-opacity));
+}
+
+.border-\[1ab5ed\] {
+  border-color: 1ab5ed;
+}
+
+.border-\[\#1ab5ed\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(26 181 237 / var(--tw-border-opacity));
 }
 
 .bg-\[\#1ab5ed\] {
@@ -929,6 +959,33 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#ffc106\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 193 6 / var(--tw-bg-opacity));
+}
+
+.bg-\[\] {
+  background-color: ;
+}
+
+.bg-\[\#1ab5eda2\] {
+  background-color: #1ab5eda2;
+}
+
+.bg-\[\#1ab5ed9f\] {
+  background-color: #1ab5ed9f;
+}
+
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+}
+
+.bg-green-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 163 74 / var(--tw-bg-opacity));
 }
 
 .fill-current {
@@ -1013,17 +1070,16 @@ video {
   line-height: 1.25rem;
 }
 
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-
 .font-bold {
   font-weight: 700;
 }
 
 .font-medium {
   font-weight: 500;
+}
+
+.capitalize {
+  text-transform: capitalize;
 }
 
 .text-\[\#ffc106\] {
