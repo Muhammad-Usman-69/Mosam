@@ -32,18 +32,19 @@ p.then((res) => {
   lastHour = lastHour < 12 ? lastHour : lastHour - 12;
 
   //assinging it
-  document.getElementById("city").innerHTML = city;
+  document.getElementById("city-name").innerHTML = city;
   document.getElementById("region-country").innerHTML =
     region + " - " + country;
   document.getElementById("current-temp").innerHTML = temp + " &#8451;";
   document.getElementById("current-feel").innerHTML = feel + " &#8451;";
   document.getElementById("humidity").innerHTML = humidity;
   document.getElementById("condition").innerHTML = conditionText;
-  document.getElementById("current-icon").innerHTML = conditionIcon;
+  document.getElementById("current-icon").src = conditionIcon;
   document.getElementById("maximum-temp").innerHTML = maximumTemp + " &#8451;";
   document.getElementById("minimum-temp").innerHTML = minimumTemp + " &#8451;";
   document.getElementById("wind").innerHTML = wind + " km/h";
-  document.getElementById("last-update").innerHTML = lastHour + ":" + lastMinute + " " + lastPeriod;
+  document.getElementById("last-update").innerHTML =
+    lastHour + ":" + lastMinute + " " + lastPeriod;
 
   //hourly forecast data of today and tommowrow
   let today = data.forecast.forecastday[0].hour;
@@ -127,3 +128,40 @@ p.then((res) => {
         </div>`;
   });
 });
+
+//check if city exist
+async function checkCity() {
+  //disabling submit button and showign wrong alerts
+  document.getElementById("submit").disabled = true;
+  document.getElementById("indicator").classList.remove("hidden");
+  document.getElementById("auto-indicator").classList.add("hidden");
+
+  //fetching data from api
+  let key = "62cc8af97d144a42ad573800242006";
+  let city = document.getElementById("city").value;
+  let p = fetch(
+    `https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${city}`
+  );
+  p.then((res) => {
+    return res.json();
+  }).then((data) => {
+    if (data.location != undefined) {
+      city = data.location.name;
+
+      //showing auto correct and hiding wrong indication
+      document.getElementById("indicator").classList.add("hidden");
+      document.getElementById("auto-city").innerHTML = city;
+      document.getElementById("auto-indicator").classList.remove("hidden");
+
+      //enabling submit button
+      document.getElementById("submit").disabled = false;
+    }
+
+    //if input is clear
+    if (city == "") {
+      document.getElementById("indicator").classList.add("hidden");
+      document.getElementById("auto-indicator").classList.add("hidden");
+      document.getElementById("submit").disabled = true;
+    }
+  });
+}

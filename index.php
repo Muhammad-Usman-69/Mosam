@@ -35,8 +35,8 @@ if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
     </a>
     <div class="grid place-items-center">
       <form class="border-2 border-[#e4eaf2] flex flex-row">
-        <input type="search" class="p-4 outline-none placeholder:italic" placeholder="Real Madrid" />
-        <input type="submit" value="Search" class="border-[#e4eaf2] border-l-2 px-4 bg-[#1ab5ed] text-white" />
+        <input type="text" id="city" class="p-4 outline-none placeholder:italic" placeholder="Real Madrid" />
+        <button type="submit" class="px-4 bg-[#1ab5ed] text-white" disabled oninput="checkCity()">Update</button>
       </form>
     </div>
     <div class="flex items-center space-x-8 justify-end">
@@ -60,9 +60,8 @@ if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
     <!-- basic -->
     <div class="flex justify-between w-[800px] bg-white rounded-md p-8">
       <div class="flex flex-col space-y-12 w-48">
-        <img src="https://cdn.weatherapi.com/weather/128x128/day/143.png" alt="" style="background-color: transparent"
+        <img src="" alt="" style="background-color: transparent"
           id="current-icon" />
-        <!-- <p class="text-xl text-center text-gray-800"></p> -->
         <ul class="text-gray-600 text-base">
           <li class="flex justify-between space-x-3">
             <p class="">Condition:</p>
@@ -90,7 +89,7 @@ if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
         <div class="space-y-4">
           <p class="text-[32px] flex items-center justify-end">
             <img src="images/location.jpg" style="width: 32px; height: 32px" />
-            <span id="city"></span>
+            <span id="city-name"></span>
           </p>
           <p class="text-gray-400 text-end" id="region-country"></p>
         </div>
