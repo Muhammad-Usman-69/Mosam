@@ -1,6 +1,5 @@
 //cresidentials
 let key = "62cc8af97d144a42ad573800242006";
-let city = "Multan";
 let days = 6;
 
 //fetching data from api
@@ -11,6 +10,7 @@ let p = fetch(
 p.then((res) => {
   return res.json();
 }).then((data) => {
+
   //today weather
   let city = data.location.name;
   let region = data.location.region;
