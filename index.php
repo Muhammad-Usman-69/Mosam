@@ -14,6 +14,10 @@ if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
 } else {
   $city = "NY";
 }
+
+if (isset($_GET["city"]) && $_GET["city"] != "") {
+  $city = $_GET["city"];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,9 +38,15 @@ if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
       <p class="text-lg">Mosam</p>
     </a>
     <div class="place-items-center grid row-start-2 row-end-2 col-span-2 md:col-span-1 md:col-start-2 md:row-start-1">
-      <form action="partials/_changecity" class="border-2 border-[#e4eaf2] flex flex-row" method="POST">
+      <?php
+      if (!isset($_SESSION["logged"])) {
+        echo '<form action="" class="border-2 border-[#e4eaf2] flex flex-row" method="GET">';
+      } else {
+        echo '<form action="partials/_changecity" class="border-2 border-[#e4eaf2] flex flex-row" method="POST">';
+      }
+      ?>
         <input type="text" name="city" id="city" class="p-4 outline-none placeholder:italic" placeholder="Real Madrid"
-          oninput="checkCity()" minlength="2" />
+        oninput="checkCity()" minlength="2" />
         <button type="submit" class="px-4 bg-[#1ab5ed] text-white" id="update" disabled>Update</button>
       </form>
     </div>
@@ -58,14 +68,6 @@ if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
   </header>
   <!-- all container -->
   <div class="space-y-4 p-4 md:p-8 md:space-y-8 grid place-items-center w-full">
-    <!-- mobile form -->
-    <!-- <div class="place-items-center grid bg-white w-full rounded-md">
-      <form action="partials/_changecity" class="flex flex-row" method="POST">
-        <input type="text" name="city" id="city" class="p-4 outline-none placeholder:italic" placeholder="Real Madrid"
-          oninput="checkCity()" minlength="2" />
-        <button type="submit" class="px-4 bg-[#1ab5ed] text-white" id="update" disabled>Update</button>
-      </form>
-    </div> -->
 
     <!-- basic -->
     <div
