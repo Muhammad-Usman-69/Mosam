@@ -12,7 +12,7 @@ if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
   $row = mysqli_fetch_assoc($result);
   $city = $row["city"];
 } else {
-  $city = "NY";
+  $city = "Multan";
 }
 
 if (isset($_GET["city"]) && $_GET["city"] != "") {
@@ -92,6 +92,14 @@ if (isset($_GET["city"]) && $_GET["city"] != "") {
           <li class="flex justify-between space-x-3">
             <p class="">Wind:</p>
             <p class="font-bold" id="wind"></p>
+          </li>
+          <li class="flex justify-between space-x-3">
+            <p class="">Sunrise:</p>
+            <p class="font-bold" id="sunrise"></p>
+          </li>
+          <li class="flex justify-between space-x-3">
+            <p class="">Sunset:</p>
+            <p class="font-bold" id="sunset"></p>
           </li>
           <li class="flex justify-between space-x-3">
             <p class="">Last Update:</p>

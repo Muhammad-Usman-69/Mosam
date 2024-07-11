@@ -22,6 +22,8 @@ p.then((res) => {
   let maximumTemp = data.forecast.forecastday[0].day.maxtemp_c;
   let minimumTemp = data.forecast.forecastday[0].day.mintemp_c;
   let wind = data.current.wind_kph;
+  let sunrise = data.forecast.forecastday[0].astro.sunrise.toLowerCase();
+  let sunset = data.forecast.forecastday[0].astro.sunset.toLowerCase();
 
   //last update time
   let lastEpoch = data.current.last_updated_epoch * 1000;
@@ -47,6 +49,8 @@ p.then((res) => {
   document.getElementById("wind").innerHTML = wind + " km/h";
   document.getElementById("last-update").innerHTML =
     lastHour + ":" + lastMinute + " " + lastPeriod;
+  document.getElementById("sunrise").innerHTML = sunrise;
+  document.getElementById("sunset").innerHTML = sunset;
 
   //hourly forecast data of today and tommowrow
   let today = data.forecast.forecastday[0].hour;
